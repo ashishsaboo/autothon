@@ -7,8 +7,8 @@ class LoginPage():
         print("I am in Login Page")
         
     def executeTest(self): 
-        #webDriver=WebDriver.getObject(self)
-        webDriver=WebDriver()
+        webDriver=WebDriver.getObject(self)
+        #webDriver=WebDriver()
         driver=webDriver.getDriver()
         driver.get("https://www.google.co.in")
         driver.maximize_window()

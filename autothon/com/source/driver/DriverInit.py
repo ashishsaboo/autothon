@@ -2,7 +2,7 @@ from selenium import webdriver
 
 class WebDriver:
     __instance = None
-    driver = ""
+    #driver = ""
     
     @staticmethod
     def getObject(self):
