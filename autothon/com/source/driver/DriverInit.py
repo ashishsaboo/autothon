@@ -27,6 +27,7 @@ class WebDriver:
         if WebDriver.__instance == None:
             print("creating new driver")
             self.driver = webdriver.Chrome(executable_path='resources/drivers/chromedriver')
+            self.driver.maximize_window()
         else:
             print("using existing driver")
             return self.driver

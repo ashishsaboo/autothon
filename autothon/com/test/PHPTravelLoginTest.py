@@ -8,3 +8,7 @@ class PHPTravelLoginTest:
     
     def enterURL(self, url):
         self.phpTravelLoginPage.enterURL(url)
+
+    def goToLoginPage(self):
+        self.phpTravelLoginPage.goToLoginPage()
+        
