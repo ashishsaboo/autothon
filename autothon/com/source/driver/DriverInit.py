@@ -26,7 +26,10 @@ class WebDriver:
     def getChromeDriver(self):
         if WebDriver.__instance == None:
             print("creating new driver")
-            self.driver = webdriver.Chrome(executable_path='resources/drivers/chromedriver')
+            options = webdriver.ChromeOptions()
+            options.add_argument('headless')
+            options.add_argument('window-size=1200x600')
+            self.driver = webdriver.Chrome(executable_path='resources/drivers/chromedriver', chrome_options=options)
             self.driver.maximize_window()
         else:
             print("using existing driver")
