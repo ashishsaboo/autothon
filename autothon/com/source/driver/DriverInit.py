@@ -27,8 +27,10 @@ class WebDriver:
         if WebDriver.__instance == None:
             print("creating new driver")
             options = webdriver.ChromeOptions()
+            options.add_argument('--no-sandbox')
             options.add_argument('headless')
             options.add_argument('window-size=1200x600')
+            options.add_argument('--disable-dev-shm-usage')
             self.driver = webdriver.Chrome(executable_path='resources/drivers/chromedriver-linux', chrome_options=options)
             #self.driver = webdriver.Chrome(executable_path='resources/drivers/chromedriver', chrome_options=options)
             self.driver.maximize_window()
