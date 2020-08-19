@@ -1,3 +1,4 @@
 .metadata
 autothon/.DS_Store
 *.pyc
+autothon/output

@@ -1,4 +1,6 @@
 from selenium import webdriver
+from jproperties import Properties
+
 
 class WebDriver:
     __instance = None
@@ -27,12 +29,19 @@ class WebDriver:
         if WebDriver.__instance == None:
             print("creating new driver")
             options = webdriver.ChromeOptions()
-            options.add_argument('--no-sandbox')
-            options.add_argument('headless')
-            options.add_argument('window-size=1200x600')
-            options.add_argument('--disable-dev-shm-usage')
-            self.driver = webdriver.Chrome(executable_path='resources/drivers/chromedriver-linux', chrome_options=options)
-            #self.driver = webdriver.Chrome(executable_path='resources/drivers/chromedriver', chrome_options=options)
+            prop = Properties()
+            with open('resources/properties/config.properties', 'rb') as config_file:
+                prop.load(config_file)
+            print(prop.get("ENV"))
+            if prop.get("ENV") == 'Unix':
+                options.add_argument('--no-sandbox')
+                options.add_argument('headless')
+                options.add_argument('window-size=1200x600')
+                options.add_argument('--disable-dev-shm-usage')
+                self.driver = webdriver.Chrome(executable_path='resources/drivers/chromedriver-linux', chrome_options=options)
+            else:
+                self.driver = webdriver.Chrome(executable_path='resources/drivers/chromedriver', chrome_options=options)
+            
             self.driver.maximize_window()
         else:
             print("using existing driver")
