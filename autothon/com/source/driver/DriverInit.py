@@ -1,6 +1,6 @@
 from selenium import webdriver
 from jproperties import Properties
-
+import platform
 
 class WebDriver:
     __instance = None
@@ -33,7 +33,8 @@ class WebDriver:
             with open('resources/properties/config.properties', 'rb') as config_file:
                 prop.load(config_file)
             print(prop.get("ENV"))
-            if prop.get("ENV") == 'Unix':
+            print(platform.system())
+            if platform.system() != 'Windows':
                 options.add_argument('--no-sandbox')
                 options.add_argument('headless')
                 options.add_argument('window-size=1200x600')
