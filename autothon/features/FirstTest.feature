@@ -7,7 +7,7 @@ Examples:
 |User|Password|
 |test_user1|test_password1|
 
-@example2
+@example
 Scenario: Login with credentials
 Given login with credential
 	|User|Password|

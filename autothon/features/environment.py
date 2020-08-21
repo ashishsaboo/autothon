@@ -9,4 +9,5 @@ def after_tag(context, tag):
     print("I am in after tag")
     webDriver=WebDriver().getObject(WebDriver)
     webDriver.getDriver().quit()
+    WebDriver().setObjectToNone()
     

@@ -4,20 +4,24 @@ import platform
 
 class WebDriver:
     __instance = None
-    #driver = ""
+    driver = ""
     
     @staticmethod
     def getObject(self):
         if WebDriver.__instance == None:
             print("Initializing new Driver")
             WebDriver.getChromeDriver(self)
-            WebDriver()
+            #WebDriver()
         else:
             return WebDriver.__instance
     
+    @staticmethod
+    def setObjectToNone():
+        WebDriver.__instance=None
+        
     def __init__(self):
         if WebDriver.__instance != None:
-            print("")
+            print("driver already created", WebDriver.__instance)
         else:
             print("this is creating object")
             print("object name:", self)
