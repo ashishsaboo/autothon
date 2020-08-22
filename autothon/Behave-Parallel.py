@@ -37,8 +37,6 @@ def _run_parallel_feature(feature):
     print('Processing feature: {}'.format(feature))
     feature_test_log = feature.replace('/', '-')
     curr_work_dir = os.getcwd()
-    if not os.path.exists(curr_work_dir) :
-        os.mkdir(curr_work_dir + '/output/log')
     cmd = 'behave {feature} -f allure_behave.formatter:AllureFormatter -o {currrent_dir}/output/allure-reports --no-capture --tags ~@sequential>> {currrent_dir}/output/log/{feature_test_log}.txt'.format(feature=feature
                                                                                        ,currrent_dir=curr_work_dir,feature_test_log=feature_test_log)
     r = call(cmd, shell=True)
@@ -65,6 +63,14 @@ def main():
     """
     Runner
     """
+    curr_work_dir = os.getcwd()
+    print("directory creation for output : " + str(os.path.exists(curr_work_dir + '/output/')))
+    if not os.path.exists(curr_work_dir + '/output/') :
+        os.makedirs(curr_work_dir + '/output/')
+    print("directory creation for log: " + str(curr_work_dir + '/output/log/'))
+    if not os.path.exists(curr_work_dir + '/output/log/') :
+        os.makedirs(curr_work_dir + '/output/log/')
+        print("")
     args = parse_arguments()
     pool = Pool(args.processes)
     if not args.feature_list and not args.feature and not args.tags:
