@@ -37,6 +37,8 @@ def _run_parallel_feature(feature):
     print('Processing feature: {}'.format(feature))
     feature_test_log = feature.replace('/', '-')
     curr_work_dir = os.getcwd()
+    if not os.path.exists(curr_work_dir) :
+        os.mkdir(curr_work_dir + '/output/log')
     cmd = 'behave {feature} -f allure_behave.formatter:AllureFormatter -o {currrent_dir}/output/allure-reports --no-capture --tags ~@sequential>> {currrent_dir}/output/log/{feature_test_log}.txt'.format(feature=feature
                                                                                        ,currrent_dir=curr_work_dir,feature_test_log=feature_test_log)
     r = call(cmd, shell=True)
@@ -117,7 +119,6 @@ def main():
     if args.outfile_prefix:
         pool.map(partial(_run_sequential_feature, outfile_prefix=args.outfile_prefix), features)
     else:
-        print("running this ra")
         pool.map(_run_parallel_feature, features)
  
 if __name__ == '__main__':
