@@ -11,7 +11,7 @@ def after_tag(context, tag):
     webDriver=WebDriver().getObject(WebDriver)
     webDriver.getDriver().quit()
     WebDriver().setObjectToNone()
-    deleteFileWithContent("skipped")
+    # deleteFileWithContent("skipped")
 
 def deleteFileWithContent(content):    
     entries = os.listdir('output/allure-reports/')
