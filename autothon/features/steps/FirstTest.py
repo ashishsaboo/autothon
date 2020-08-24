@@ -11,8 +11,8 @@ def i_login_with_user_password(context, username, password):
     print("I am in login Steps", username)
     loginTest = LoginTest()
     loginTest.loginToApplication()
-    entryTest= EntryTest()
-    entryTest.enterToApplication()
+#     entryTest= EntryTest()
+#     entryTest.enterToApplication()
     
 @given('login with credential')
 def login_with_credentials(context):
@@ -23,3 +23,6 @@ def login_with_credentials(context):
         lst.append(row['Password'])
     listTest=ListTest()
     listTest.printListValues(lst)
+    entryTest= EntryTest()
+    entryTest.enterToApplication("http://gmail.com")
+    entryTest.enterToApplication("http://yahoo.com")

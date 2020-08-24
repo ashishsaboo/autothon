@@ -4,14 +4,19 @@ import time
 class PHPTravelLoginPage:
     def __init__(self):
         print("I am in PHP travel login page")
-        self.webDriver=WebDriver.getObject(self)
+        #self.webDriver=WebDriver.getObject(self)
     
     def enterURL(self, url):
-        driver=self.webDriver.getDriver()
+        webDriver=WebDriver.getObject(self)
+        #webDriver=WebDriver()
+        driver=webDriver.getDriver()
+        print("driver in second scenario", driver)
         driver.get(url)
         
     def goToLoginPage(self):
-        driver=self.webDriver.getDriver()
+        webDriver=WebDriver.getObject(self)
+        #webDriver=WebDriver()
+        driver=webDriver.getDriver()
 #         action = ActionChains(driver)
 #         action.move_to_element(driver.find_element_by_id("dropdownCurrency")).click()
         time.sleep(4)
