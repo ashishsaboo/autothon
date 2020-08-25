@@ -16,13 +16,13 @@ COPY . .
 
 RUN pip install -r requirements.txt
 
-#ADD start.sh ./
+ADD start.sh ./
 
-#RUN chmod 777 ./start.sh
+RUN chmod 777 ./start.sh
 
-#CMD ["bash","./start.sh"]
+CMD ["sh","start.sh"]
 
-CMD ["behave", "-f allure_behave.formatter:AllureFormatter"," -o ./output/allure-reports"," ./features"," --tags=@example"]
+#CMD ["behave", "-f allure_behave.formatter:AllureFormatter"," -o ./output/allure-reports"," ./features"," --tags=@example"]
 
 #CMD ["allure", "serve ./output/allure-reports"]
 
