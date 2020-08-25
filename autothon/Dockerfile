@@ -16,6 +16,8 @@ COPY . .
 
 RUN pip install -r requirements.txt
 
+ADD start.sh /
+
 RUN chmod 777 ./start.sh
 
 CMD ["bash","start.sh"]
