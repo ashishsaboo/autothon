@@ -1,6 +1,10 @@
 from com.source.driver.DriverInit import WebDriver
 from behave import fixture
 import os   
+from allure_commons.types import AttachmentType
+import allure
+
+
 def before_tag(context, tag):
     print("I am in before tag")
     webDriver=WebDriver()
@@ -31,14 +35,16 @@ def after_step(context, step):
         driver=webDriver.getDriver()
         curr_work_dir = os.getcwd()
         driver.get_screenshot_as_file(curr_work_dir + '/output/screenshots' + "/" + context.scenario.name + ".jpg")
+        #allure.attach(driver.get_screenshot_as_png(), name="Screenshot", attachment_type=AttachmentType.PNG)
+
         
 def deleteFileWithContent(content):    
     entries = os.listdir('output/allure-reports/')
     for entry in entries:
         print(entry)
-        # file1 = open('output/allure-reports/' + entry, 'r')
-        # if content in file1.read():
-        #     os.remove('output/allure-reports/' + entry)
+        file1 = open('output/allure-reports/' + entry, 'r')
+        if content in file1.read():
+            os.remove('output/allure-reports/' + entry)
 
 
     
