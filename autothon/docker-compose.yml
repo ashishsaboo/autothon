@@ -1,0 +1,9 @@
+version: '3'
+services:
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    volumes:
+        - ${PWD}/allure-results:/usr/src/app/output/allure-reports
