@@ -1,8 +1,8 @@
 Feature: To test Webservice requests
 
-  @addcart
+  @webservice
   Scenario Outline: Test add cart request and checkout
-    Given Add product "<Product Type>" "<Product>" to cart for user "<User>"
+    Given Add product "<Product Type>" "<Product>" to cart for user "<User>" - webservice
 
 
     Examples:
