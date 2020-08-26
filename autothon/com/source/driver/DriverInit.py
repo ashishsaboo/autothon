@@ -21,7 +21,8 @@ class WebDriver:
         
     def __init__(self):
         if WebDriver.__instance != None:
-            print("driver already created", WebDriver.__instance)
+#             print("driver already created", WebDriver.__instance)
+            print("")
         else:
             print("this is creating object")
             print("object name:", self)
@@ -49,6 +50,7 @@ class WebDriver:
             else:
                 self.driver = webdriver.Chrome(executable_path='resources/drivers/chromedriver.exe', chrome_options=options)
             self.driver.maximize_window()
+            self.driver.implicitly_wait(5)
         else:
             print("using existing driver")
             return self.driver
