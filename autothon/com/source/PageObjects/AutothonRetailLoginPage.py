@@ -200,16 +200,19 @@ class AutothonRetailLoginPage:
 #         except(NoSuchElementException):
             
         
-        #time.sleep(5)
-#         driver.find_element_by_link_text("Create account").click()
-#         driver.find_element_by_xpath("//input[@placeholder='Username']").send_keys("Autothonteam3")
-#         driver.find_element_by_xpath("//input[@placeholder='Password']").send_keys("Autothonteam@3")
-#         driver.find_element_by_xpath("//input[@placeholder='Email']").send_keys("ashishsaboo06@gmail.com")
-#         
-#         countryCode = driver.find_element_by_xpath("//select[@data-test='dial-code-select']")
-#         countryCodeList = Select(countryCode)
-#         time.sleep(3)
-#         countryCodeList.select_by_visible_text("India (+91)")
-#         driver.find_element_by_xpath("//input[@placeholder='Phone Number']").send_keys("7798872329")
-#         driver.find_element_by_xpath("//button[text()='Create Account']").click()
+    def createAccount(self):
+        webDriver=WebDriver.getObject(self)
+        driver=webDriver.getDriver()
+        time.sleep(5)
+        driver.find_element_by_link_text("Create account").click()
+        driver.find_element_by_xpath("//input[@placeholder='Username']").send_keys("Autothonteam3")
+        driver.find_element_by_xpath("//input[@placeholder='Password']").send_keys("Autothonteam@3")
+        driver.find_element_by_xpath("//input[@placeholder='Email']").send_keys("ashishsaboo06@gmail.com")
+         
+        countryCode = driver.find_element_by_xpath("//select[@data-test='dial-code-select']")
+        countryCodeList = Select(countryCode)
+        time.sleep(3)
+        countryCodeList.select_by_visible_text("India (+91)")
+        driver.find_element_by_xpath("//input[@placeholder='Phone Number']").send_keys("7798872329")
+        driver.find_element_by_xpath("//button[text()='Create Account']").click()  
         
