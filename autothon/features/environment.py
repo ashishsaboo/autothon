@@ -44,9 +44,15 @@ def after_step(context, step):
 
 def deleteFileWithContent(content):
     entries = os.listdir('output/allure-reports/')
+    print("deleting file with skipped content")
+    print("deleting file with skipped content")
+    print("deleting file with skipped content")
     for entry in entries:
         # print(entry)
         if "." in entry:
             file1 = open('output/allure-reports/' + entry, 'r')
             if content in file1.read():
                 os.remove('output/allure-reports/' + entry)
+    print("deleted file with skipped content")
+    
+    

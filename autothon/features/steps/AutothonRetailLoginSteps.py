@@ -2,6 +2,8 @@ from com.test.AutothonRetailLoginTest import AutothonRetailLoginTest
 from behave import use_step_matcher
 use_step_matcher("re")
 from behave import given, then
+import time
+
 
 total = 0
 @given('I open \"([^\"]*)\"')
@@ -32,8 +34,8 @@ def step_impl_checkout(context):
     autothonRetailLoginTest = AutothonRetailLoginTest()
     autothonRetailLoginTest.viewAndCheckoutCart()
     
-@given('I select Item from Category and checkout')
-def step_impl_select_category_and_item(context):
+@given('I select Item from Category and checkout for \"([^\"]*)\"')
+def step_impl_select_category_and_item(context, user):
     lst=[];
     autothonRetailLoginTest = AutothonRetailLoginTest()
     count=1
@@ -51,7 +53,8 @@ def step_impl_select_category_and_item(context):
             autothonRetailLoginTest.clickContinueShopping()
             count = count -1
     autothonRetailLoginTest.viewCart()
-    global total
+    #global total
+    total =0
     for row in context.table:
         total = autothonRetailLoginTest.incrementCartByQty(row['Item'], row['Quantity'], total)
     print("total value from order:: " + str(total))    
@@ -64,6 +67,10 @@ def step_impl_select_category_and_item(context):
         total = total + 10
     total = total + tax
     autothonRetailLoginTest.checkoutCart()
+    print("total from previous" + str(total))
+    print("total from previous" + str(total))
+    #autothonRetailLoginTest = AutothonRetailLoginTest()
+    autothonRetailLoginTest.verifyOrderDetail(user, total)
     
 @given('Verify Order detail for \"([^\"]*)\"')
 def step_impl_verify_order(context, userName):
@@ -71,10 +78,12 @@ def step_impl_verify_order(context, userName):
     print("total from previous" + str(total))
     autothonRetailLoginTest = AutothonRetailLoginTest()
     autothonRetailLoginTest.verifyOrderDetail(userName, total)
-    total=0
+    
 
 
 @given('I enter \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\" and \"([^\"]*)\"')
 def step_impl_user_creation(context, username, password, email, countrycode, mobile, result):
     autothonRetailLoginTest = AutothonRetailLoginTest()
     autothonRetailLoginTest.createUser(username, password, email, countrycode, mobile, result)
+    
+    
