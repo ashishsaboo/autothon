@@ -71,6 +71,7 @@ def step_impl_verify_order(context, userName):
     print("total from previous" + str(total))
     autothonRetailLoginTest = AutothonRetailLoginTest()
     autothonRetailLoginTest.verifyOrderDetail(userName, total)
+    total=0
 
 
 @given('I enter \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\" and \"([^\"]*)\"')
