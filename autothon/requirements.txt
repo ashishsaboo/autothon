@@ -28,3 +28,4 @@ idna==2.10
 locust==1.2.2
 psutil==5.7.2
 msgpack==1.0.0
+Flask==1.1.2
