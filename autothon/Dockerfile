@@ -1,4 +1,4 @@
-FROM ubuntu:19.10
+FROM ubuntu:14.04
 FROM python:3.6
 
 RUN apt update
@@ -15,6 +15,11 @@ WORKDIR /usr/src/app
 COPY . .
 
 RUN pip install -r requirements.txt
+
+
+RUN apt-get update && apt-get install -y default-jre
+
+RUN curl -o allure-2.6.0.tgz -Ls https://dl.bintray.com/qameta/generic/io/qameta/allure/allure/2.6.0/allure-2.6.0.tgz && tar -zxvf allure-2.6.0.tgz -C /opt/ && ln -s /opt/allure-2.6.0/bin/allure /usr/bin/allure && allure --version
 
 ADD start.sh ./
 
