@@ -71,4 +71,9 @@ def step_impl_verify_order(context, userName):
     print("total from previous" + str(total))
     autothonRetailLoginTest = AutothonRetailLoginTest()
     autothonRetailLoginTest.verifyOrderDetail(userName, total)
-        
+
+
+@given('I enter \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\" and \"([^\"]*)\"')
+def step_impl_user_creation(context, username, password, email, countrycode, mobile, result):
+    autothonRetailLoginTest = AutothonRetailLoginTest()
+    autothonRetailLoginTest.createUser(username, password, email, countrycode, mobile, result)

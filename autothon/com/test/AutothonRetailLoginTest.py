@@ -35,3 +35,6 @@ class AutothonRetailLoginTest:
         
     def verifyOrderDetail(self, userName, total):
         self.autothonRetailLoginPage.checkOrderDetail(userName, total)
+
+    def createUser(self, username, password, email, countrycode, mobile, result):
+        self.autothonRetailLoginPage.createAccount(username, password, email, countrycode, mobile, result)
