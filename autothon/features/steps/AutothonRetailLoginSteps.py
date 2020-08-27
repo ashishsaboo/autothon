@@ -3,6 +3,7 @@ from behave import use_step_matcher
 use_step_matcher("re")
 from behave import given, then
 
+total = 0
 @given('I open \"([^\"]*)\"')
 def step_impl_url(context, url):
     print("I am in get url step", url)
@@ -50,9 +51,24 @@ def step_impl_select_category_and_item(context):
             autothonRetailLoginTest.clickContinueShopping()
             count = count -1
     autothonRetailLoginTest.viewCart()
+    global total
     for row in context.table:
-        autothonRetailLoginTest.incrementCartByQty(row['Item'], row['Quantity'])
-        
+        total = autothonRetailLoginTest.incrementCartByQty(row['Item'], row['Quantity'], total)
+    print("total value from order:: " + str(total))    
+    print("total value from order:: " + str(total))
+    print("total value from order:: " + str(total))
+    tax = round(total * .05, 2)
+    print("total value from order:: " + str(tax))
+    changeToINR = total * 77
+    if changeToINR <10000:
+        total = total + 10
+    total = total + tax
     autothonRetailLoginTest.checkoutCart()
     
-    
+@given('Verify Order detail for \"([^\"]*)\"')
+def step_impl_verify_order(context, userName):
+    print("total from previous" + str(total))
+    print("total from previous" + str(total))
+    autothonRetailLoginTest = AutothonRetailLoginTest()
+    autothonRetailLoginTest.verifyOrderDetail(userName, total)
+        

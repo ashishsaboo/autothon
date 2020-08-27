@@ -9,6 +9,7 @@ from selenium.webdriver.common.by import By
 from com.source.PageObjects.ExceptionExample import AutomationError
 
 class AutothonRetailLoginPage:
+    
     def __init__(self):
         print("I am in login page")
         #self.webDriver=WebDriver.getObject(self)
@@ -118,15 +119,23 @@ class AutothonRetailLoginPage:
 #         time.sleep(2)
 #         self.enter_billing_detail()
         
-    def increment_product_by_count(self, itemName, noOfItem):
+    def increment_product_by_count(self, itemName, noOfItem, total):
         webDriver=WebDriver.getObject(self)
         #webDriver=WebDriver()
         driver=webDriver.getDriver()
         noOfItem = int(noOfItem)
         elem = driver.find_element_by_xpath("//img[@alt='" + itemName + "']/../../td[3]/i")
+        itemPrice = driver.find_element_by_xpath("//img[@alt='" + itemName + "']/../../td[4]").text
+        itemPrice=itemPrice.replace("$", "").replace(" ", "")
+        grandTotal = float(total) + float(itemPrice)
         while noOfItem > 1 : 
             elem.click()
             noOfItem = noOfItem -1
+            grandTotal = grandTotal + float(itemPrice)
+            
+        print("total price:" + str(grandTotal))
+        print("total price:" + str(grandTotal))
+        return grandTotal
         
             
     def enter_billing_detail(self):
@@ -199,7 +208,36 @@ class AutothonRetailLoginPage:
 #             userName = driver.find_element_by_partial_link_text("Autothonteam3")
 #         except(NoSuchElementException):
             
+    def checkOrderDetail(self, userName, total):
+        webDriver=WebDriver.getObject(self)
+        driver=webDriver.getDriver()
+        time.sleep(2)
+        driver.find_element_by_partial_link_text(userName).click()
+        time.sleep(2)
+        driver.find_element_by_link_text("Orders").click()
+        time.sleep(2)
+        elemOrderTable = driver.find_elements_by_xpath("//div/table[@class='table']/tr")
+        count=0
+        for row in elemOrderTable:
+            count = count+1
+        print("number of rows:" + str(count))
+        print("number of rows:" + str(count))
         
+        orderId = driver.find_element_by_xpath("//div/table[@class='table']/tr[" + str(count) + "]/td[1]").text
+        strUserName = driver.find_element_by_xpath("//div/table[@class='table']/tr[" + str(count) + "]/td[2]").text
+        strItem = driver.find_element_by_xpath("//div/table[@class='table']/tr[" + str(count) + "]/td[3]/div").text
+        strTotal = driver.find_element_by_xpath("//div/table[@class='table']/tr[" + str(count) + "]/td[4]").text
+        print(orderId + strUserName + strItem + strTotal)
+        print(orderId + strUserName + strItem + strTotal)
+        if str(total) in strTotal:
+            print("total order amount matched")
+        else:
+            print("total order amount not matched: Expected: " + str(total) + " Actual: " + strTotal)
+            errStatement = "total order amount not matched: Expected: " + str(total) + " Actual: " + strTotal
+            raise AutomationError(errStatement)
+        
+        
+            
     def createAccount(self):
         webDriver=WebDriver.getObject(self)
         driver=webDriver.getDriver()

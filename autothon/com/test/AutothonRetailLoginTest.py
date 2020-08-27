@@ -24,11 +24,14 @@ class AutothonRetailLoginTest:
     def clickContinueShopping(self):
         self.autothonRetailLoginPage.clickContinueShopping()
         
-    def incrementCartByQty(self, itemName, noOfItem):
-        self.autothonRetailLoginPage.increment_product_by_count(itemName, noOfItem)
+    def incrementCartByQty(self, itemName, noOfItem, total):
+        return self.autothonRetailLoginPage.increment_product_by_count(itemName, noOfItem, total)
         
     def viewCart(self):
         self.autothonRetailLoginPage.view_cart()
     
     def checkoutCart(self):
         self.autothonRetailLoginPage.checkout_cart()
+        
+    def verifyOrderDetail(self, userName, total):
+        self.autothonRetailLoginPage.checkOrderDetail(userName, total)
