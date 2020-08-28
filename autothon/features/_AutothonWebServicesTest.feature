@@ -52,5 +52,4 @@ Feature: To test Webservice requests
     Examples:
       | User Name |
       | abcdefgh  |
-      | abcdefgh  |
 

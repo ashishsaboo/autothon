@@ -1,3 +1,5 @@
+from selenium.webdriver.common.keys import Keys
+
 from com.source.driver.DriverInit import WebDriver
 from selenium.webdriver.common.action_chains import ActionChains
 import time
@@ -267,3 +269,28 @@ class AutothonRetailLoginPage:
         else:
             actualResult = driver.find_element_by_xpath("//div[2]/div/div[4]").text
         assert result == actualResult, "Test Case Failed due to Actual result :=" + actualResult + "Expected result :=" + result
+
+    def searchProduct(self, productname):
+        webDriver = WebDriver.getObject(self)
+        driver = webDriver.getDriver()
+        time.sleep(2)
+        result = "product/id?feature=category_detail_rank&exp="
+        driver.find_element_by_id("search").send_keys(productname)
+        # driver.send_keys()
+        # driver.Keys.ENTER()
+        driver.find_element_by_id("search").send_keys(Keys.ENTER)
+
+        actualResult = driver.current_url
+        if result in actualResult:
+            result = actualResult
+        assert result == actualResult, "Test Case Failed due to Actual result := " + actualResult + " Expected result is to have " + result + "in URL, post search"
+
+    def clickOnHelp(self):
+        webDriver = WebDriver.getObject(self)
+        driver = webDriver.getDriver()
+        driver.find_element_by_xpath("//a[@href='#/help']").click()
+        actualResult = driver.find_element_by_xpath("// div[ @ id = 'app'] / div[2] / div / div[2]").text
+        result = "Exception"
+        if result not in actualResult:
+            result = actualResult
+        assert result == actualResult, "Test Case Failed due to " + actualResult
