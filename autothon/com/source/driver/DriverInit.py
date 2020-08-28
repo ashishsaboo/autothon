@@ -46,7 +46,7 @@ class WebDriver:
                 options.add_argument('--disable-dev-shm-usage')
                 self.driver = webdriver.Chrome(executable_path='resources/drivers/chromedriver-linux', chrome_options=options)
             elif platform.system() == 'Darwin':
-                self.driver = webdriver.Chrome(executable_path='resources/drivers/chromedriver-mac', chrome_options=options)
+                self.driver = webdriver.Chrome(executable_path='resources/drivers/chromedriver-84', chrome_options=options)
             else:
                 self.driver = webdriver.Chrome(executable_path='resources/drivers/chromedriver.exe', chrome_options=options)
             self.driver.maximize_window()
