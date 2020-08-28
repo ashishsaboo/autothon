@@ -3,8 +3,11 @@ from behave import use_step_matcher
 use_step_matcher("re")
 from behave import given, then
 import time
+from jproperties import Properties
 
-
+prop=Properties()
+with open('resources/properties/config.properties', 'rb') as config_file:
+    prop.load(config_file)
 total = 0
 @given('I open \"([^\"]*)\"')
 def step_impl_url(context, url):
@@ -22,7 +25,7 @@ def step_impl_login(context, userName, passowrd):
 @given('I Login with \"([^\"]*)\" and \"([^\"]*)\"')
 def step_impl_signIn(context, userName, password):
     autothonRetailLoginTest = AutothonRetailLoginTest()
-    autothonRetailLoginTest.clickSIgnIn(userName, password)
+    autothonRetailLoginTest.clickSIgnIn(prop.get("userName").data, prop.get("password").data)
     
 @given('I select \"([^\"]*)\" from \"([^\"]*)\"')
 def step_impl_section(context, item, category):
@@ -70,7 +73,7 @@ def step_impl_select_category_and_item(context, user):
     print("total from previous" + str(total))
     print("total from previous" + str(total))
     #autothonRetailLoginTest = AutothonRetailLoginTest()
-    autothonRetailLoginTest.verifyOrderDetail(user, total)
+    autothonRetailLoginTest.verifyOrderDetail(prop.get("userName").data, total)
     
 @given('Verify Order detail for \"([^\"]*)\"')
 def step_impl_verify_order(context, userName):

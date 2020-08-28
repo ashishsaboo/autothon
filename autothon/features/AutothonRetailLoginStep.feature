@@ -12,7 +12,7 @@ Feature: add product and order entry
 
     Examples:
       | UserName | Password   |
-      | Richa1   | Docker@123 |
+      | *****   | ***** |
 
   @multipleOrder
   Scenario Outline: Order 3 products having differnce in 0.01 in total order
@@ -26,7 +26,7 @@ Feature: add product and order entry
 
     Examples:
       | UserName | Password   |
-      | Richa1   | Docker@123 |
+      | ****   | ****** |
 
   @createUserAccount
   Scenario Outline: Create Test user
